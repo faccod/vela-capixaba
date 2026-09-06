@@ -51,6 +51,17 @@ export default function Home() {
             em todas as aulas.
           </p>
 
+          {/* Google reviews badge */}
+          <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur">
+            <div className="flex items-center gap-1 text-dourado">
+              <span className="text-base font-black">{SITE.googleNota}</span>
+              <span>★</span>
+            </div>
+            <span className="text-sm text-white/80">
+              {SITE.googleReviews} avaliações no Google
+            </span>
+          </div>
+
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a
               href={whatsappLink(
@@ -153,7 +164,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {SERVICOS.map((s) => (
               <Link
                 key={s.slug}
