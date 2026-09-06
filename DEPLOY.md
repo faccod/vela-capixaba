@@ -48,26 +48,26 @@ Passo a passo mastigado pra colocar o site no ar.
 
 ### 3.1 Adicionar o domínio na Vercel
 
-- [ ] No painel do projeto na Vercel, vai em **Settings → Domains**
-- [ ] Digita `velacapixaba.com.br` e clica em **"Add"**
-- [ ] Adiciona também `www.velacapixaba.com.br` (redireciona pro apex)
-- [ ] A Vercel vai mostrar os **records DNS** que você precisa colocar no Registro.br:
-
-      Tipo    Host    Valor
-      A       @       216.198.79.1
-      CNAME   www     cname.vercel-dns.com
-
-      (ou outro valor que a Vercel mostrar — copia exatamente)
+✅ **JÁ FEITO em 06/09/2026** (via API)
+- Domínio `velacapixaba.com.br` adicionado
+- `www.velacapixaba.com.br` adicionado (redireciona pro apex)
 
 ### 3.2 Adicionar os records no Registro.br (SEM mexer em nameservers!)
 
+Os valores **exatos** que a Vercel espera (capturados em 06/09/2026):
+
+```
+Tipo     Host    Valor
+A        @       76.76.21.21
+CNAME    www     cname.vercel-dns.com
+```
+
 - [ ] Acessa [registro.br](https://registro.br) e faz login
 - [ ] Vai em **"Meus Domínios" → `velacapixaba.com.br` → "DNS"**
-- [ ] Se aparecer pra escolher entre "DNS avançado" e "Mudança de DNS", clica em **"DNS avançado"**
-- [ ] **NÃO** mexa em nameservers — só adicione/edite records
+- [ ] Se aparecer pra escolher entre "DNS avançado" e "Mudança de DNS", clica em **"DNS avançado"** ⚠️ **NUNCA mexer em nameservers**
 - [ ] Apaga qualquer record antigo que conflite (tipo A ou CNAME no @ ou www)
 - [ ] Adiciona:
-      - **Tipo A**, Host `@` (ou deixe vazio), Valor `216.198.79.1`
+      - **Tipo A**, Host `@` (ou deixe vazio), Valor `76.76.21.21`
       - **Tipo CNAME**, Host `www`, Valor `cname.vercel-dns.com`
 - [ ] Clica em **"Salvar"**
 
@@ -79,6 +79,13 @@ Passo a passo mastigado pra colocar o site no ar.
 - [ ] Se não aparecer, espera mais um pouco (não é problema, é só DNS propagando)
 
 ✅ **Site no ar em `https://velacapixaba.com.br`**
+
+### 🔗 URLs atuais (06/09/2026)
+
+- **Produção Vercel (técnica)**: `https://web-tau-rust-14.vercel.app/`
+- **Produção Vercel (após rename)**: `https://vela-capixaba.vercel.app/` (vai funcionar quando propagar)
+- **Domínio customizado**: `https://velacapixaba.com.br/` (depois do DNS)
+- **Painel admin**: `https://velacapixaba.com.br/admin/index.html` (depois do DNS)
 
 ---
 
