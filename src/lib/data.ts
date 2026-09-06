@@ -13,8 +13,13 @@ export const SITE = {
   cnpj: "42.349.408/0001-13",
   razaoSocial: "Centro Náutico Capixaba",
   credenciamentos: ["World Sailing", "FECAI"],
-  horario: "Segunda a Domingo",
+  googleNota: "5.0",
+  googleReviews: "41",
+  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Vela+Capixaba+Vit%C3%B3ria+ES",
+  googleEmbedQuery: "Vela+Capixaba+Centro+N%C3%A1utico+Capixaba+Vit%C3%B3ria",
+  horario: "Segunda a Domingo, a partir das 07:00",
   horarioDetalhe: "Aulas agendadas conforme disponibilidade do aluno",
+  categoria: "Escola de iatismo em Vitória, Espírito Santo",
 };
 
 export const NAV = [
@@ -69,6 +74,28 @@ export const SERVICOS = [
     duracao: "Consulte",
     embarcação: "Veleiro de passeio",
     href: "/cursos/passeios",
+  },
+  {
+    slug: "aluguel",
+    name: "Aluguel de Equipamentos",
+    headline: "Alugue e veleje",
+    short:
+      "Aluguel de equipamentos de vela para quem já sabe velejar. Liberdade pra curtir a baía de Vitória no seu ritmo.",
+    destaque: false,
+    duracao: "Por hora/diária",
+    embarcação: "Veleiros diversos",
+    href: "/cursos/aluguel",
+  },
+  {
+    slug: "consultoria",
+    name: "Consultoria Náutica",
+    headline: "Orientação especializada",
+    short:
+      "Consultoria personalizada pra quem quer orientação profissional sobre vela, embarcações ou projetos náuticos.",
+    destaque: false,
+    duracao: "Sob consulta",
+    embarcação: "—",
+    href: "/cursos/consultoria",
   },
 ];
 
@@ -146,24 +173,24 @@ export const PROXIMAS_TURMAS = [
 export const DEPOIMENTOS = [
   {
     id: 1,
-    nome: "Aluno(a) Vela Capixaba",
-    texto:
-      "Experiência incrível! O instrutor acompanha de perto, te dá segurança, e o curso termina com a sensação de que você realmente aprendeu a velejar.",
+    nome: "J.",
+    texto: "Um ótimo professor, aula muito boa.",
     cidade: "Vitória/ES",
+    fonte: "Google",
   },
   {
     id: 2,
-    nome: "Aluno(a) Vela Capixaba",
-    texto:
-      "Sempre tive vontade de aprender vela. O curso é muito bem estruturado, material excelente e aulas 100% práticas. Recomendo demais!",
+    nome: "APTA",
+    texto: "Vale a pena o curso de vela, muito bom!",
     cidade: "Vitória/ES",
+    fonte: "Google",
   },
   {
     id: 3,
-    nome: "Aluno(a) Vela Capixaba",
-    texto:
-      "A melhor decisão que tomei. Hoje velejo com autonomia e já fiz o módulo avançado. Vale cada centavo!",
+    nome: "M.",
+    texto: "Profissionalismo do início ao fim, e uma energia extraordinária.",
     cidade: "Vitória/ES",
+    fonte: "Google",
   },
 ];
 
