@@ -1,0 +1,164 @@
+backend:
+  name: github
+  repo: faccod/vela-capixaba
+  branch: main
+  # OAuth app do GitHub precisa ser configurado (instruções no README)
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+publish_mode: editorial_workflow
+# Habilita drafts e revisão antes de publicar
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+site_url: https://velacapixaba.com.br
+display_url: https://velacapixaba.com.br
+logo_url: /images/logo-branca.png
+search: true
+
+locale: pt-BR
+
+collections:
+  # ===== Configurações globais (nome, contato, endereço) =====
+  - name: "settings"
+    label: "Configurações do site"
+    label_singular: "Configuração"
+    folder: "content/settings"
+    create: false
+    delete: false
+    editor:
+      preview: false
+    fields:
+      - { label: "Nome do site", name: "siteName", widget: "string" }
+      - { label: "Slogan", name: "tagline", widget: "string" }
+      - { label: "WhatsApp (apenas números, com 55 e DDD)", name: "whatsapp", widget: "string", hint: "Ex: 5527995392923" }
+      - { label: "WhatsApp (formatado)", name: "whatsappDisplay", widget: "string", hint: "Ex: (27) 99953-9293" }
+      - { label: "E-mail", name: "email", widget: "string" }
+      - { label: "Instagram (URL)", name: "instagram", widget: "string" }
+      - { label: "Instagram (handle)", name: "instagramHandle", widget: "string" }
+      - { label: "Endereço completo", name: "address", widget: "text" }
+      - { label: "CNPJ", name: "cnpj", widget: "string" }
+      - { label: "Razão social", name: "razaoSocial", widget: "string" }
+      - { label: "Horário", name: "horario", widget: "string", hint: "Ex: Segunda a Domingo" }
+      - { label: "Detalhe do horário", name: "horarioDetalhe", widget: "string" }
+
+  # ===== Serviços / Cursos =====
+  - name: "cursos"
+    label: "Cursos e Serviços"
+    label_singular: "Curso/Serviço"
+    folder: "content/cursos"
+    slug: "{{slug}}"
+    create: true
+    delete: true
+    summary: "{{name}} — {{duracao}}"
+    fields:
+      - { label: "Nome", name: "name", widget: "string" }
+      - { label: "Slug (URL)", name: "slug", widget: "string", hint: "Ex: iniciante, avancado, regatas, passeios" }
+      - { label: "Headline (linha fina)", name: "headline", widget: "string" }
+      - { label: "Descrição curta", name: "short", widget: "text" }
+      - { label: "É carro-chefe?", name: "destaque", widget: "boolean", default: false }
+      - { label: "Duração", name: "duracao", widget: "string", hint: "Ex: 5 aulas de 2h" }
+      - { label: "Embarcação", name: "embarcacao", widget: "string" }
+      - label: "Headline principal"
+        name: "headlinePrincipal"
+        widget: "string"
+        required: false
+      - label: "Subheadline"
+        name: "subheadline"
+        widget: "text"
+        required: false
+      - label: "Descrição completa"
+        name: "descricao"
+        widget: "text"
+        required: false
+      - label: "Estrutura (bullets)"
+        name: "estrutura"
+        widget: "list"
+        required: false
+      - label: "Incluso (bullets)"
+        name: "incluso"
+        widget: "list"
+        required: false
+      - label: "Bônus (bullets)"
+        name: "bonus"
+        widget: "list"
+        required: false
+      - label: "O que você aprende (bullets)"
+        name: "aprendizado"
+        widget: "list"
+        required: false
+      - label: "Resultado final"
+        name: "resultado"
+        widget: "text"
+        required: false
+      - label: "Tabela de preços"
+        name: "precos"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Modalidade", name: "modalidade", widget: "string" }
+          - { label: "Preço", name: "preco", widget: "string" }
+          - { label: "Detalhe extra", name: "detalhe", widget: "string", required: false }
+          - { label: "É destaque?", name: "destaque", widget: "boolean", default: false }
+          - { label: "Tag (ex: Mais vantajoso)", name: "tag", widget: "string", required: false }
+
+  # ===== Próximas turmas =====
+  - name: "turmas"
+    label: "Próximas Turmas"
+    label_singular: "Turma"
+    folder: "content/turmas"
+    slug: "{{slug}}"
+    create: true
+    delete: true
+    summary: "{{tipo}} — {{data}}"
+    fields:
+      - { label: "Tipo de curso", name: "tipo", widget: "string", hint: "Ex: Curso Iniciante, Curso Avançado" }
+      - { label: "Data (texto livre)", name: "data", widget: "string", hint: "Ex: 15/Nov, sáb 9h-13h" }
+      - { label: "Horário", name: "horario", widget: "string" }
+      - { label: "Vagas disponíveis", name: "vagas", widget: "number" }
+      - { label: "Local", name: "local", widget: "string" }
+      - { label: "Instrutor", name: "instrutor", widget: "string" }
+      - { label: "Ativa?", name: "ativa", widget: "boolean", default: true }
+
+  # ===== Depoimentos =====
+  - name: "depoimentos"
+    label: "Depoimentos"
+    label_singular: "Depoimento"
+    folder: "content/depoimentos"
+    slug: "{{slug}}"
+    create: true
+    delete: true
+    summary: "{{nome}}"
+    fields:
+      - { label: "Nome", name: "nome", widget: "string" }
+      - { label: "Cidade/UF", name: "cidade", widget: "string" }
+      - { label: "Texto", name: "texto", widget: "text" }
+      - { label: "Ativo?", name: "ativo", widget: "boolean", default: true }
+
+  # ===== FAQ =====
+  - name: "faq"
+    label: "FAQ — Perguntas Frequentes"
+    label_singular: "Pergunta"
+    folder: "content/faq"
+    slug: "{{slug}}"
+    create: true
+    delete: true
+    summary: "{{pergunta}}"
+    fields:
+      - { label: "Pergunta", name: "pergunta", widget: "string" }
+      - { label: "Resposta", name: "resposta", widget: "text" }
+      - { label: "Ordem (1 = primeiro)", name: "ordem", widget: "number", default: 99 }
+
+  # ===== Galeria =====
+  - name: "galeria"
+    label: "Galeria de Fotos"
+    label_singular: "Foto"
+    folder: "content/galeria"
+    slug: "{{slug}}"
+    create: true
+    delete: true
+    summary: "{{titulo}}"
+    fields:
+      - { label: "Título/legenda", name: "titulo", widget: "string" }
+      - { label: "Imagem", name: "imagem", widget: "image" }
+      - { label: "Ordem", name: "ordem", widget: "number", default: 99 }
