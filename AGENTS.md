@@ -5,8 +5,14 @@
 
 ## Status atual (06/09/2026)
 
-✅ **Site rodando localmente** em `http://localhost:3003` (dev server ativo)
-✅ **Build de produção OK** (13 páginas estáticas, ~101kB First Load JS)
+✅ **Site NO AR** em produção
+- URL Vercel: `https://web-tau-rust-14.vercel.app/` (técnica)
+- URL Vercel: `https://vela-capixaba.vercel.app/` (após rename)
+- Domínio: `https://velacapixaba.com.br/` (após DNS no Registro.br)
+✅ **Repositório GitHub**: `github.com/faccod/vela-capixaba` (público)
+✅ **Projeto Vercel**: `vela-capixaba` (org `faccod-1408s-projects`)
+✅ **Domínio customizado** adicionado na Vercel
+✅ **Build de produção OK** (13 páginas estáticas, ~87kB First Load JS)
 ✅ **Estrutura completa**: Home, Sobre, Cursos (4), Galeria, Contato
 ✅ **Painel admin** em `/admin/index.html` (Decap CMS — backend GitHub precisa OAuth)
 ✅ **Conteúdo do Curso Iniciante** completo (do PDF)
