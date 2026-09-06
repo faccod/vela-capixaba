@@ -21,6 +21,17 @@ export default function ContatoPage() {
             Estamos prontos pra te ajudar a escolher o melhor curso, passeio ou
             treinamento. Fale com a gente!
           </p>
+
+          {/* Google reviews badge */}
+          <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur">
+            <div className="flex items-center gap-1 text-dourado">
+              <span className="text-base font-black">{SITE.googleNota}</span>
+              <span>★</span>
+            </div>
+            <span className="text-sm text-white/80">
+              {SITE.googleReviews} avaliações no Google
+            </span>
+          </div>
         </div>
       </section>
 
@@ -74,7 +85,7 @@ export default function ContatoPage() {
               </h2>
               <p className="mt-3 text-base text-cinza-escuro">{SITE.address}</p>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Centro+N%C3%A1utico+Capixaba+Vit%C3%B3ria+ES"
+                href={SITE.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-block text-sm font-bold uppercase tracking-wide text-azul-marinho underline-offset-4 hover:text-dourado-escuro hover:underline"
@@ -101,6 +112,20 @@ export default function ContatoPage() {
                 Siga no Instagram →
               </a>
             </div>
+          </div>
+
+          {/* Google Maps Embed */}
+          <div className="mt-10 overflow-hidden rounded-2xl border border-cinza-claro shadow-md">
+            <iframe
+              src={`https://www.google.com/maps?q=${SITE.googleEmbedQuery}&output=embed`}
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Localização da Vela Capixaba"
+            />
           </div>
         </div>
       </section>
