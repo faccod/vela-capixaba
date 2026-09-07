@@ -52,3 +52,17 @@ push-changes.ps1
 push_agents.py
 push_agents_v2.py
 push_agents_v3.py
+
+# arquivos de teste/rascunho
+_archive/
+/_archive/
+
+# scripts auxiliares de push (NÃO comitar — usam tokens via env var)
+push_agents*.py
+push-*.ps1
+push-*.py
+push-to-github.ps1
+push-changes.ps1
+push_agents.py
+push_agents_v2.py
+push_agents_v3.py
