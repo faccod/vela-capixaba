@@ -22,15 +22,12 @@ export default function ContatoPage() {
             treinamento. Fale com a gente!
           </p>
 
-          {/* Google reviews badge */}
-          <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur">
-            <div className="flex items-center gap-1 text-dourado">
-              <span className="text-base font-black">{SITE.googleNota}</span>
-              <span>★</span>
-            </div>
-            <span className="text-sm text-white/80">
-              {SITE.googleReviews} avaliações no Google
+          {/* Google reviews badge - só estrelas */}
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur">
+            <span className="text-base font-black text-dourado">
+              {SITE.googleNota}
             </span>
+            <span className="text-dourado">★★★★★</span>
           </div>
         </div>
       </section>
