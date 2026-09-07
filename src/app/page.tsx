@@ -15,17 +15,17 @@ export default function Home() {
     <>
       {/* ===== HERO ===== */}
       <section className="relative isolate overflow-hidden bg-azul-marinho text-white">
-        {/* Background image */}
+        {/* Background image - mais visível agora */}
         <div className="absolute inset-0 -z-10">
           <Image
             src="/images/hero-barco.jpg"
             alt="Vela Capixaba na Baía de Vitória"
             fill
             priority
-            className="object-cover opacity-50"
+            className="object-cover opacity-70"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-azul-marinho/80 via-azul-marinho/70 to-azul-marinho" />
+          <div className="absolute inset-0 bg-gradient-to-b from-azul-marinho/60 via-azul-marinho/55 to-azul-marinho/90" />
         </div>
 
         <div className="mx-auto flex min-h-[88vh] max-w-7xl flex-col items-start justify-center px-4 py-24 md:px-6 md:py-32">
@@ -39,27 +39,28 @@ export default function Home() {
             </span>
           </div>
 
-          <h1 className="max-w-3xl text-5xl font-black uppercase leading-[0.95] tracking-tight md:text-7xl">
-            Sinta o vento.
-            <br />
-            <span className="text-dourado">Veleje com a gente.</span>
+          <h1 className="max-w-4xl text-4xl font-black uppercase leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+            Escola de Vela na{" "}
+            <span className="text-dourado">Praia da Guarderia</span>,
+            <br className="hidden md:block" />
+            em Vitória/ES.
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg text-white/85 md:text-xl">
-            A escola de vela da Praia da Guarderia, em Vitória/ES. Cursos,
-            passeios e treinamentos — do zero ao mar, com instrutor dedicado
-            em todas as aulas.
+          <p className="mt-6 max-w-2xl text-lg text-white/90 md:text-xl">
+            Cursos, passeios e treinamentos para quem quer aprender a velejar,
+            evoluir no esporte e viver experiências únicas no mar.
           </p>
 
-          {/* Google reviews badge */}
-          <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur">
-            <div className="flex items-center gap-1 text-dourado">
-              <span className="text-base font-black">{SITE.googleNota}</span>
-              <span>★</span>
-            </div>
-            <span className="text-sm text-white/80">
-              {SITE.googleReviews} avaliações no Google
+          <p className="mt-4 max-w-2xl text-base font-medium text-dourado md:text-lg">
+            Do zero ao mar, com instrutor dedicado em todas as aulas.
+          </p>
+
+          {/* Google reviews badge - só estrelas */}
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur">
+            <span className="text-base font-black text-dourado">
+              {SITE.googleNota}
             </span>
+            <span className="text-dourado">★★★★★</span>
           </div>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -97,7 +98,7 @@ export default function Home() {
                 Quem somos
               </span>
               <h2 className="mt-3 text-4xl font-black uppercase text-azul-marinho md:text-5xl">
-                Mais que uma escola. Uma escola pra chamar de sua.
+                Mais que uma escola. O seu lugar no mar.
               </h2>
               <p className="mt-6 text-lg leading-relaxed text-cinza-escuro">
                 A Vela Capixaba é uma escola de vela localizada em Vitória/ES,
