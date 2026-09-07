@@ -250,8 +250,9 @@ export const GALERIA = [
   { src: "/images/galeria-08.jpg", alt: "Pôr do sol a bordo" },
 ];
 
-export function whatsappLink(message?: string) {
-  const base = `https://wa.me/${SITE.whatsapp}`;
+export function whatsappLink(message?: string, whatsappNumber?: string) {
+  const num = whatsappNumber || SITE.whatsapp;
+  const base = `https://wa.me/${num}`;
   if (message) {
     return `${base}?text=${encodeURIComponent(message)}`;
   }
