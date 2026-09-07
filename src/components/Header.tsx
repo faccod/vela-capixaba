@@ -1,15 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import { NAV, SITE, whatsappLink } from "@/lib/data";
+import { NAV } from "@/lib/data";
+import { whatsappLink } from "@/lib/whatsapp";
+import type { SiteSettings } from "@/lib/cms";
 
-export function Header() {
+export function Header({ site }: { site: SiteSettings }) {
   return (
     <header className="sticky top-0 z-50 bg-azul-marinho text-white shadow-lg">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/images/logo-branca.png"
-            alt="Vela Capixaba"
+            alt={site.name}
             width={200}
             height={62}
             className="h-14 w-auto md:h-16"
@@ -32,7 +34,8 @@ export function Header() {
         <div className="flex items-center gap-3">
           <a
             href={whatsappLink(
-              `Oi, Marlon! Vim pelo site da Vela Capixaba e gostaria de mais informações.`
+              `Oi, ${site.name}! Vim pelo site e gostaria de mais informações.`,
+              site.whatsapp,
             )}
             target="_blank"
             rel="noopener noreferrer"
