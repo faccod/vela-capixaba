@@ -1,12 +1,19 @@
 "use client";
 
-import { whatsappLink } from "@/lib/data";
+import { whatsappLink } from "@/lib/whatsapp";
 
-export function WhatsAppFloat() {
+// Tipo inline pra não importar 'fs' de cms.ts no client component
+type SiteSettings = {
+  name: string;
+  whatsapp: string;
+};
+
+export function WhatsAppFloat({ site }: { site: SiteSettings }) {
   return (
     <a
       href={whatsappLink(
-        `Oi, Marlon! Vim pelo site da Vela Capixaba e gostaria de mais informações.`
+        `Oi, ${site.name}! Vim pelo site e gostaria de mais informações.`,
+        site.whatsapp,
       )}
       target="_blank"
       rel="noopener noreferrer"
