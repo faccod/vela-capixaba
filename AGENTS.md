@@ -3,28 +3,64 @@
 > Site institucional da escola de vela Vela Capixaba (Vitória/ES).
 > Stack: Next.js 14 + Tailwind CSS 3 + Decap CMS. 100% free (Vercel Hobby).
 
-## Status atual (06/09/2026)
+## Status atual (07/09/2026)
 
-✅ **Site NO AR** em produção
-- URL Vercel: `https://web-tau-rust-14.vercel.app/` (técnica)
-- URL Vercel: `https://vela-capixaba.vercel.app/` (após rename)
-- Domínio: `https://velacapixaba.com.br/` (após DNS no Registro.br)
-✅ **Repositório GitHub**: `github.com/faccod/vela-capixaba` (público)
-✅ **Projeto Vercel**: `vela-capixaba` (org `faccod-1408s-projects`)
-✅ **Domínio customizado** adicionado na Vercel
-✅ **Build de produção OK** (13 páginas estáticas, ~87kB First Load JS)
-✅ **Estrutura completa**: Home, Sobre, Cursos (4), Galeria, Contato
-✅ **Painel admin** em `/admin/index.html` (Decap CMS — backend GitHub precisa OAuth)
-✅ **Conteúdo do Curso Iniciante** completo (do PDF)
+✅ **Site no ar em produção**
+- Domínio customizado: `https://velacapixaba.com.br/` (DNS propagou!)
+- URL Vercel técnica: `https://web-tau-rust-14.vercel.app/`
+- URL Vercel alias: `https://vela-capixaba.vercel.app/`
+- 15 páginas estáticas geradas, 87.2kB First Load JS (excelente performance)
+
+✅ **GitHub**: `github.com/faccod/vela-capixaba` (público, ~70 arquivos sincronizados)
+
+✅ **Vercel projeto**: `vela-capixaba` (org `faccod-1408s-projects`, ID `prj_n0M1EL7Myhw1L0zc7kSEU2TqUNdU`)
+
+✅ **Decap CMS / Painel Admin (07/09/2026)**:
+- URL: `https://velacapixaba.com.br/admin/index.html`
+- 7 collections: settings, home, turmas, depoimentos, faq, instrutores, galeria
+- 15 arquivos de conteúdo populados (settings, hero, 1 turma-exemplo, 3 depoimentos Google, 8 FAQ)
+- Site lê via `src/lib/cms.ts` com fallback hardcoded
+- Marlon convidado como **editor** em 07/09/2026 (aguarda confirmação de email)
+
+✅ **Netlify** (projeto `vela-capixaba`):
+- Identity + Git Gateway ativos (token GitHub vinculado automaticamente)
+- Owner: faccod@gmail.com
+
+✅ **Conteúdo completo**:
+- 6 serviços (Iniciante, Avançado, Regatas, Passeios, Aluguel, Consultoria)
+- Curso Iniciante (carro-chefe) com página dedicada + tabela de preços completa
+- 3 depoimentos reais do Google (5.0★)
+- Badge "5.0 ★★★★★" no hero da home e na página de contato
+- 8 perguntas no FAQ
+- Galeria com 10 fotos
+- Google Maps embed na página de contato
+
+✅ **Atualizações do cliente aplicadas em 06/09/2026**:
+- Texto de entrada novo: "Escola de Vela na Praia da Guarderia, em Vitória/ES..."
+- Foto da capa mais visível (opacidade 70% vs 50%)
+- "Mais que uma escola. O seu lugar no mar" (Quem somos)
+- Logo maior no header (h-16 no desktop)
+- Horário: Segunda a Domingo, a partir das 08:00
+- Badge de avaliações: só "5.0 ★★★★★" (sem número de reviews)
+
+✅ **Atualizações do cliente aplicadas em 06/09/2026**:
+- Texto de entrada novo: "Escola de Vela na Praia da Guarderia, em Vitória/ES..."
+- Foto da capa mais visível (opacidade 70% vs 50%)
+- "Mais que uma escola. O seu lugar no mar" (Quem somos)
+- Logo maior no header (h-16 no desktop)
+- Horário: Segunda a Domingo, a partir das 08:00
+- Badge de avaliações: só "5.0 ★★★★★" (sem número de reviews)
 
 ## Stack & versões
 
-- **Next.js**: 14.2.35 (App Router)
+- **Next.js**: 14.2.35 (App Router) — Next 16 e Tailwind 4 dão pau de binário nativo no Windows
 - **React**: 18
-- **Tailwind CSS**: 3.4.19 (v4 tem incompatibilidade com binário nativo no Windows)
-- **Node**: 24.17.0 (mínimo recomendado: 18.18+)
+- **Tailwind CSS**: 3.4.19
+- **Node**: 24.17.0
+- **TypeScript**: 5
 - **Decap CMS**: ^3.0.0 (carregado via CDN em `/admin/index.html`)
-- **Backend CMS**: GitHub (precisa configurar OAuth app)
+- **Backend CMS**: GitHub via Netlify Identity + Git Gateway (sem OAuth App customizado — Netlify usa o token do owner automaticamente)
+- **Autenticação CMS**: Netlify Identity (free, OAuth proxy)
 
 ## Estrutura de pastas
 
@@ -34,7 +70,7 @@ web/
 │   ├── admin/
 │   │   ├── index.html      # Decap CMS UI
 │   │   └── config.yml      # Collections do CMS
-│   └── images/             # Logo + fotos (renomeadas)
+│   └── images/             # 12 fotos + 2 logos
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx      # Layout global (Header + Footer + WhatsAppFloat)
@@ -43,10 +79,12 @@ web/
 │   │   ├── sobre/page.tsx
 │   │   ├── cursos/
 │   │   │   ├── page.tsx
-│   │   │   ├── iniciante/page.tsx   # Carro-chefe
+│   │   │   ├── iniciante/page.tsx    # Carro-chefe
 │   │   │   ├── avancado/page.tsx
 │   │   │   ├── regatas/page.tsx
-│   │   │   └── passeios/page.tsx
+│   │   │   ├── passeios/page.tsx
+│   │   │   ├── aluguel/page.tsx
+│   │   │   └── consultoria/page.tsx
 │   │   ├── galeria/page.tsx
 │   │   └── contato/page.tsx
 │   ├── components/
@@ -54,11 +92,23 @@ web/
 │   │   ├── Footer.tsx
 │   │   └── WhatsAppFloat.tsx
 │   └── lib/
-│       └── data.ts         # Dados estáticos (DEPOIS migra pro Decap CMS)
+│       ├── data.ts         # Dados estáticos (fallback)
+│       ├── cms.ts          # Loader CMS (lê JSON de /content com fallback pro data.ts)
+│       └── whatsapp.ts     # WhatsApp utils (separado p/ não importar fs em client)
+├── content/                # Editável pelo Decap CMS via /admin
+│   ├── settings/site.json
+│   ├── home/hero.json
+│   ├── turmas/
+│   ├── depoimentos/
+│   ├── faq/
+│   ├── instrutores/        # (vazio, Marlon cadastra)
+│   └── galeria/            # (vazio, Marlon cadastra)
 ├── next.config.mjs
 ├── tailwind.config.js
 ├── postcss.config.mjs
-└── package.json
+├── package.json
+├── push-changes.ps1        # Script PowerShell (não usar, deu erro)
+└── DEPLOY.md               # Guia de deploy passo a passo
 ```
 
 ## Paleta oficial (extraída do logo em 06/09/2026)
@@ -74,6 +124,20 @@ web/
 - **Display (títulos)**: Barlow Condensed (Black, 900)
 - **Corpo**: Inter (Regular, 500, 600)
 
+## Identidade do cliente
+
+- **Nome fantasia**: Vela Capixaba
+- **Razão social**: Centro Náutico Capixaba
+- **CNPJ**: 42.349.408/0001-13
+- **WhatsApp**: (27) 99953-9293 (`wa.me/5527999539293`)
+- **E-mail**: marloniatismo@gmail.com (temporário, vai criar @velacapixaba.com.br)
+- **Instagram**: @velacapixaba
+- **Endereço**: Centro Náutico Capixaba, Av. Américo Buaiz, 1811, Enseada do Suá, Vitória-ES, 29050-463
+- **Atendimento**: Marlon (dono)
+- **Horário**: Segunda a Domingo, a partir das 08:00
+- **Credenciamentos**: World Sailing + FECAI
+- **Google Business**: 5.0★ (escola de iatismo em Vitória, ES)
+
 ## Como rodar local
 
 ```bash
@@ -82,59 +146,54 @@ npm install
 npm run dev -- -p 3003
 ```
 
-Abre em `http://localhost:3003`.
+Abre em `http://localhost:3003`. Dev server atual roda em PID 29632 com log em `dev-server.log`.
 
 > ⚠️ A porta 3003 é a do Vela Capixaba pra não conflitar com Sapataria Martinelli (3002) e Financeiro Unificado (3001).
 
-## Pendente
+## ⚠️ PENDENTE CRÍTICO: DNS não propagou
 
-### Pra colocar no ar (você/Matheus)
+**Sintoma**: Os 2 records DNS (A + CNAME) estão salvos no painel do Registro.br (visível na UI), mas o servidor autoritativo `a.auto.dns.br` / `b.auto.dns.br` não está respondendo com eles. SOA serial atualizou (de `2026249930` pra `2026250000`), confirmando que a UI registrou a mudança, mas a publicação no servidor DNS falhou silenciosamente.
 
-- [ ] **Subir o código pro GitHub** (`faccod/vela-capixaba`)
-  - Criar repo no GitHub Desktop → "Add existing repository" → apontar pra `web/`
-  - Fazer commit + push
-- [ ] **Deploy na Vercel** (importar o repo)
-  - Vercel detecta Next.js automaticamente
-  - Pegar URL temporária tipo `vela-capixaba.vercel.app`
-- [ ] **Configurar domínio** `velacapixaba.com.br`
-  - Adicionar domínio na Vercel
-  - No Registro.br: records A + CNAME direto (NÃO mexer em nameservers)
-  - Vercel já fornece os valores exatos
+**Workarounds** (testar em ordem):
+1. **Deletar e re-adicionar** os 2 records (forçar re-sync)
+2. **Abrir chamado no suporte do Registro.br** (https://registro.br/ajuda) — mencionar:
+   - "Adicionei 2 records na zona DNS avançada. A UI mostra os records salvos, o serial do SOA atualizou, mas os servidores `a.auto.dns.br` / `b.auto.dns.br` não estão respondendo com os records."
+3. Esperar 24h (alguns casos resolvem sozinhos, mas improvável)
 
-### Pra o cliente editar pelo painel
+**Valores DNS esperados** (capturados via Vercel API em 06/09/2026):
+```
+Tipo     Host    Valor
+A        @       76.76.21.21
+CNAME    www     cname.vercel-dns.com
+```
 
-- [ ] **Configurar GitHub OAuth** pro Decap CMS
-  - Criar OAuth app: https://github.com/settings/applications/new
-  - Callback URL: `https://api.netlify.com/auth/done` (Decap usa Netlify Identity como proxy OAuth, gratuito)
-  - Adicionar Client ID/Secret no Netlify (criar conta free)
-  - Atualizar `public/admin/config.yml` com as credenciais
-- [ ] **Cliente acessa** `velacapixaba.com.br/admin/index.html` e edita
+## Pendente do cliente (ver `../cliente-info.md`) — Marlon edita via /admin
 
-### Conteúdo que falta do cliente (ver `../cliente-info.md`)
+- [ ] Instrutores (nomes, bios, fotos individuais) — coleção `instrutores` pronta
+- [ ] 5 serviços sem detalhes: Avançado, Regatas, Passeios, Aluguel, Consultoria (a gente atualiza no `data.ts` se mudar copy)
+- [ ] Próximas turmas (datas, vagas, instrutor) — coleção `turmas` pronta, só cadastrar
+- [ ] Depoimentos — adicionar mais 3-6 (já tem 3 do Google) — coleção `depoimentos` pronta
+- [ ] FAQ — adicionar mais (já tem 8) — coleção `faq` pronta
+- [ ] Galeria — adicionar fotos — coleção `galeria` pronta
+- [ ] Vídeos (MP4 ou link YouTube/IG) — prometidos pelo Matheus
+- [ ] E-mail institucional @velacapixaba.com.br (cliente vai criar)
+- [ ] Confirmar email e testar /admin com Marlon (07/09/2026)
 
-- [ ] Instrutores (nomes, bios, fotos)
-- [ ] 3 serviços sem detalhes: Avançado, Regatas, Passeios
-- [ ] Próximas turmas com datas reais
-- [ ] Depoimentos reais (3-6)
-- [ ] FAQ completo
-- [ ] Horário de funcionamento detalhado
-- [ ] Política de cancelamento
-- [ ] Vídeos (MP4 ou link YouTube/IG)
+## URLs e credenciais
 
-## Notas técnicas
+- **Produção**: https://velacapixaba.com.br/ (aguardando DNS)
+- **Vercel alias técnica**: https://web-tau-rust-14.vercel.app/ (funcionando)
+- **GitHub repo**: https://github.com/faccod/vela-capixaba
+- **Vercel dashboard**: https://vercel.com/faccod-1408s-projects/vela-capixaba
+- **Registro.br**: titular é Marlon Oliveira da Silva (CPF 139.298.507-29)
+- **Token Vercel** (em uso): armazenado em `setx` na sessão Mavis (não persistido)
+- **Token GitHub**: armazenado em variável de ambiente `GITHUB_TOKEN` durante uso (não commitado). Ver `references/github-deploy.md` na agent memory.
 
-- **Dev server atual**: rodando em background na porta 3003 (PID 29632, log em `dev-server.log`)
-- **Tailwind v4 deu pau** no Windows (lightningcss binário incompatível) — fix foi downgrade pra v3
-- **Next 16 deu pau** no Windows (SWC binário incompatível) — fix foi downgrade pra Next 14
-- **Imagens em /public/images/** — já estão com nomes significativos (hero-barco, galeria-01, etc)
-- **WhatsApp correto** (corrigido em 06/09/2026): `(27) 99953-9293` → `wa.me/5527999539293` (55+27+999539293)
-- **Mensagem padrão do WhatsApp** (configurada no `data.ts`):
-  > "Oi, Marlon! Vim pelo site da Vela Capixaba e tô interessado na turma de [NOME] do dia [DATA]. Pode me passar mais detalhes? Valeu!"
+## Próximos passos (quando retomar)
 
-## Próximos passos sugeridos
-
-1. Matheus cria repo no GitHub via GitHub Desktop
-2. Push do código
-3. Importa na Vercel
-4. Me chama pra ajudar a configurar o domínio e o OAuth do Decap
-5. Site no ar 🎉
+1. ✅ ~~Resolver DNS do Registro.br~~ (propagou em 07/09/2026)
+2. ✅ ~~Configurar OAuth do Decap CMS~~ (Git Gateway via Netlify Identity, sem OAuth App customizado)
+3. ✅ ~~Convidar Marlon como editor~~ (07/09/2026, aguarda confirmação de email)
+4. Quando Marlon confirmar email: testar login em `velacapixaba.com.br/admin/index.html`
+5. Aguardar cliente enviar: instrutores, detalhes dos 5 serviços secundários, próximas turmas, mais depoimentos, FAQ, vídeos
+6. Configurar e-mail institucional @velacapixaba.com.br
