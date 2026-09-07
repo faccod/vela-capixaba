@@ -10,9 +10,9 @@ export function Header() {
           <Image
             src="/images/logo-branca.png"
             alt="Vela Capixaba"
-            width={160}
-            height={50}
-            className="h-10 w-auto md:h-12"
+            width={200}
+            height={62}
+            className="h-14 w-auto md:h-16"
             priority
           />
         </Link>
