@@ -1,21 +1,43 @@
 import Image from "next/image";
 import Link from "next/link";
+import { SERVICOS } from "@/lib/data";
 import {
-  CURSO_INICIANTE,
-  DEPOIMENTOS,
-  FAQ,
-  PROXIMAS_TURMAS,
-  SERVICOS,
-  SITE,
-  whatsappLink,
-} from "@/lib/data";
+  getDepoimentos,
+  getFaq,
+  getHomeContent,
+  getSettings,
+  getTurmas,
+} from "@/lib/cms";
+import { whatsappLink } from "@/lib/whatsapp";
 
-export default function Home() {
+export default async function Home() {
+  // Carrega tudo do CMS (com fallback hardcoded)
+  const [site, home, turmas, depoimentos, faq] = await Promise.all([
+    getSettings(),
+    getHomeContent(),
+    getTurmas(),
+    getDepoimentos(),
+    getFaq(),
+  ]);
+
+  // Textos da home (vindos do CMS, com fallback do data.ts)
+  const heroBadge1 = home?.badge1 ?? "Certificada World Sailing";
+  const heroBadge2 = home?.badge2 ?? "Filiada FECAI";
+  const heroHeadline = home?.headline ?? "Escola de Vela na Praia da Guarderia, em Vitória/ES.";
+  const heroSubtitulo = home?.subtitulo ?? "Cursos, passeios e treinamentos para quem quer aprender a velejar, evoluir no esporte e viver experiências únicas no mar.";
+  const heroDestaque = home?.destaque ?? "Do zero ao mar, com instrutor dedicado em todas as aulas.";
+  const heroCta1 = home?.cta1 ?? "Quero começar a velejar";
+  const heroCta2 = home?.cta2 ?? "Ver todos os serviços";
+  const sobreTitulo = home?.sobreTitulo ?? "Mais que uma escola. O seu lugar no mar.";
+  const sobreSubtitulo = home?.sobreSubtitulo ?? "Mais que uma escola de vela: um lugar pra você descobrir a liberdade do mar.";
+  const sobreTexto = home?.sobreTexto ?? "A Vela Capixaba é uma escola de vela localizada em Vitória/ES, criada para aproximar pessoas do esporte e do mar. Nossa missão é oferecer uma experiência de aprendizado segura, prática e de qualidade, desde o primeiro contato com a vela até o aperfeiçoamento e treinamento para regatas.";
+  const servicosTitulo = home?.servicosTitulo ?? "O que oferecemos";
+  const servicosSubtitulo = home?.servicosSubtitulo ?? "Do primeiro contato com o mar ao treinamento para regatas — uma escola completa pra você viver a vela em qualquer nível.";
+
   return (
     <>
       {/* ===== HERO ===== */}
       <section className="relative isolate overflow-hidden bg-azul-marinho text-white">
-        {/* Background image - mais visível agora */}
         <div className="absolute inset-0 -z-10">
           <Image
             src="/images/hero-barco.jpg"
@@ -29,36 +51,30 @@ export default function Home() {
         </div>
 
         <div className="mx-auto flex min-h-[88vh] max-w-7xl flex-col items-start justify-center px-4 py-24 md:px-6 md:py-32">
-          {/* Credenciamento badge */}
           <div className="mb-6 flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-dourado/60 bg-dourado/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-dourado backdrop-blur">
-              Certificada World Sailing
+              {heroBadge1}
             </span>
             <span className="rounded-full border border-dourado/60 bg-dourado/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-dourado backdrop-blur">
-              Filiada FECAI
+              {heroBadge2}
             </span>
           </div>
 
           <h1 className="max-w-4xl text-4xl font-black uppercase leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-            Escola de Vela na{" "}
-            <span className="text-dourado">Praia da Guarderia</span>,
-            <br className="hidden md:block" />
-            em Vitória/ES.
+            {heroHeadline}
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg text-white/90 md:text-xl">
-            Cursos, passeios e treinamentos para quem quer aprender a velejar,
-            evoluir no esporte e viver experiências únicas no mar.
+            {heroSubtitulo}
           </p>
 
           <p className="mt-4 max-w-2xl text-base font-medium text-dourado md:text-lg">
-            Do zero ao mar, com instrutor dedicado em todas as aulas.
+            {heroDestaque}
           </p>
 
-          {/* Google reviews badge - só estrelas */}
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur">
             <span className="text-base font-black text-dourado">
-              {SITE.googleNota}
+              {site.googleNota}
             </span>
             <span className="text-dourado">★★★★★</span>
           </div>
@@ -66,25 +82,26 @@ export default function Home() {
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a
               href={whatsappLink(
-                `Oi, Marlon! Quero saber mais sobre o Curso de Vela — Módulo Iniciante.`
+                `Oi, Marlon! Quero saber mais sobre o Curso de Vela — Módulo Iniciante.`,
+                site.whatsapp,
               )}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full bg-dourado px-7 py-4 text-sm font-black uppercase tracking-wide text-azul-marinho shadow-xl transition-colors hover:bg-dourado-claro"
             >
-              Quero começar a velejar
+              {heroCta1}
             </a>
             <Link
               href="/cursos"
               className="rounded-full border border-white/30 bg-white/5 px-7 py-4 text-center text-sm font-black uppercase tracking-wide text-white backdrop-blur transition-colors hover:bg-white/10"
             >
-              Ver todos os serviços
+              {heroCta2}
             </Link>
           </div>
 
           <p className="mt-8 text-xs uppercase tracking-widest text-white/60">
             <span className="font-bold text-dourado">●</span> Turmas abertas —{" "}
-            {SITE.horario}
+            {site.horario}
           </p>
         </div>
       </section>
@@ -98,14 +115,11 @@ export default function Home() {
                 Quem somos
               </span>
               <h2 className="mt-3 text-4xl font-black uppercase text-azul-marinho md:text-5xl">
-                Mais que uma escola. O seu lugar no mar.
+                {sobreTitulo}
               </h2>
+              <p className="mt-3 text-lg text-dourado-escuro">{sobreSubtitulo}</p>
               <p className="mt-6 text-lg leading-relaxed text-cinza-escuro">
-                A Vela Capixaba é uma escola de vela localizada em Vitória/ES,
-                criada para aproximar pessoas do esporte e do mar. Nossa missão
-                é oferecer uma experiência de aprendizado segura, prática e de
-                qualidade — desde o primeiro contato com a vela até o
-                aperfeiçoamento e treinamento para regatas.
+                {sobreTexto}
               </p>
               <ul className="mt-6 space-y-2 text-cinza-escuro">
                 <li className="flex items-start gap-2">
@@ -157,11 +171,10 @@ export default function Home() {
               Nossos serviços
             </span>
             <h2 className="mt-3 text-4xl font-black uppercase text-azul-marinho md:text-5xl">
-              O que oferecemos
+              {servicosTitulo}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-cinza-escuro">
-              Do primeiro contato com o mar ao treinamento para regatas — uma
-              escola completa pra você viver a vela em qualquer nível.
+              {servicosSubtitulo}
             </p>
           </div>
 
@@ -271,9 +284,9 @@ export default function Home() {
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {PROXIMAS_TURMAS.map((turma) => (
+            {turmas.map((turma, idx) => (
               <div
-                key={turma.id}
+                key={idx}
                 className="flex flex-col gap-4 rounded-2xl border border-cinza-claro bg-white p-6 shadow-sm"
               >
                 <span className="inline-block w-fit rounded-full bg-dourado/20 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-dourado-escuro">
@@ -297,9 +310,7 @@ export default function Home() {
                   </li>
                 </ul>
                 <a
-                  href={whatsappLink(
-                    `Oi, Marlon! Quero me inscrever na turma de ${turma.tipo}.`
-                  )}
+                  href={whatsappLink(turma.whatsappMsg || `Oi, Marlon! Quero me inscrever na turma de ${turma.tipo}.`, site.whatsapp)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-2 block rounded-full bg-dourado px-5 py-3 text-center text-xs font-black uppercase tracking-wide text-azul-marinho transition-colors hover:bg-dourado-claro"
@@ -325,9 +336,9 @@ export default function Home() {
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {DEPOIMENTOS.map((d) => (
+            {depoimentos.map((d) => (
               <blockquote
-                key={d.id}
+                key={d.id ?? d.nome}
                 className="rounded-2xl border border-cinza-claro bg-cinza-claro/40 p-6"
               >
                 <p className="text-base italic leading-relaxed text-azul-marinho">
@@ -335,6 +346,7 @@ export default function Home() {
                 </p>
                 <footer className="mt-4 text-sm font-bold uppercase tracking-wide text-cinza-escuro">
                   — {d.nome}, {d.cidade}
+                  {d.fonte && <span className="ml-2 text-xs text-cinza">({d.fonte})</span>}
                 </footer>
               </blockquote>
             ))}
@@ -355,7 +367,7 @@ export default function Home() {
           </div>
 
           <div className="mt-12 space-y-3">
-            {FAQ.map((item, idx) => (
+            {faq.map((item, idx) => (
               <details
                 key={idx}
                 className="group rounded-xl border border-cinza-claro bg-white p-5 [&_summary::-webkit-details-marker]:hidden"
@@ -387,7 +399,8 @@ export default function Home() {
           </p>
           <a
             href={whatsappLink(
-              `Oi, Marlon! Quero saber mais sobre os cursos da Vela Capixaba.`
+              `Oi, Marlon! Quero saber mais sobre os cursos da Vela Capixaba.`,
+              site.whatsapp,
             )}
             target="_blank"
             rel="noopener noreferrer"
