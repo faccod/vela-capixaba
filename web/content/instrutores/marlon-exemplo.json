@@ -1,0 +1,13 @@
+{
+  "nome": "Marlon",
+  "cargo": "Fundador e Instrutor Chefe",
+  "foto": null,
+  "bio": "Velejador há mais de 15 anos, instrutor certificado World Sailing e FECAI. Apaixonado por ensinar o primeiro contato com o mar — atende alunos de todas as idades na Praia da Guarderia.",
+  "certificacoes": [
+    "World Sailing — Instrutor Sênior",
+    "FECAI — Filiado",
+    "Instrutor de Vela nível III"
+  ],
+  "ordem": 1,
+  "ativo": true
+}
