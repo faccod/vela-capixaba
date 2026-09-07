@@ -1,0 +1,10 @@
+{
+  "tipo": "Curso Iniciante",
+  "data": "Consulte",
+  "horario": "Aulas agendadas",
+  "vagas": 4,
+  "local": "Praia da Guarderia",
+  "instrutor": "Marlon",
+  "whatsappMsg": "Oi, Marlon! Quero me inscrever na turma de Curso Iniciante.",
+  "ativa": true
+}
