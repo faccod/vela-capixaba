@@ -29,7 +29,7 @@ export default function SobrePage() {
           <h1 className="mt-4 max-w-3xl text-5xl font-black uppercase leading-[0.95] md:text-6xl">
             Mais que uma escola.
             <br />
-            <span className="text-dourado">Uma escola pra chamar de sua.</span>
+            <span className="text-dourado">O seu lugar no mar.</span>
           </h1>
         </div>
       </section>
