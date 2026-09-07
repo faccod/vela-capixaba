@@ -1,4 +1,5 @@
-import { SITE, whatsappLink } from "@/lib/data";
+import { whatsappLink } from "@/lib/whatsapp";
+import { getSettings } from "@/lib/cms";
 
 export const metadata = {
   title: "Contato — Vela Capixaba",
@@ -6,7 +7,8 @@ export const metadata = {
     "Fale com a Vela Capixaba pelo WhatsApp (27) 99953-9293 ou venha nos visitar no Centro Náutico Capixaba.",
 };
 
-export default function ContatoPage() {
+export default async function ContatoPage() {
+  const site = await getSettings();
   return (
     <>
       <section className="bg-azul-marinho py-20 text-white md:py-24">
@@ -22,10 +24,9 @@ export default function ContatoPage() {
             treinamento. Fale com a gente!
           </p>
 
-          {/* Google reviews badge - só estrelas */}
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur">
             <span className="text-base font-black text-dourado">
-              {SITE.googleNota}
+              {site.googleNota}
             </span>
             <span className="text-dourado">★★★★★</span>
           </div>
@@ -38,7 +39,8 @@ export default function ContatoPage() {
             {/* WhatsApp */}
             <a
               href={whatsappLink(
-                `Oi, Marlon! Vim pelo site da Vela Capixaba e gostaria de mais informações.`
+                `Oi, Marlon! Vim pelo site da Vela Capixaba e gostaria de mais informações.`,
+                site.whatsapp,
               )}
               target="_blank"
               rel="noopener noreferrer"
@@ -50,7 +52,7 @@ export default function ContatoPage() {
                 Resposta rápida e atendimento personalizado.
               </p>
               <span className="text-2xl font-black tracking-wide">
-                {SITE.whatsappDisplay}
+                {site.whatsappDisplay}
               </span>
               <span className="mt-2 inline-block rounded-full bg-white/20 px-4 py-2 text-center text-sm font-bold uppercase tracking-wide backdrop-blur">
                 Iniciar conversa →
@@ -59,7 +61,7 @@ export default function ContatoPage() {
 
             {/* E-mail */}
             <a
-              href={`mailto:${SITE.email}`}
+              href={`mailto:${site.email}`}
               className="group flex flex-col gap-4 rounded-2xl border-2 border-azul-marinho bg-white p-8 text-azul-marinho shadow-md transition-transform hover:scale-[1.02]"
             >
               <span className="text-4xl">✉️</span>
@@ -67,7 +69,7 @@ export default function ContatoPage() {
               <p className="text-base text-cinza-escuro">
                 Para dúvidas detalhadas, parcerias ou imprensa.
               </p>
-              <span className="text-xl font-bold">{SITE.email}</span>
+              <span className="text-xl font-bold">{site.email}</span>
               <span className="mt-2 inline-block rounded-full border-2 border-azul-marinho px-4 py-2 text-center text-sm font-bold uppercase tracking-wide">
                 Enviar e-mail →
               </span>
@@ -80,9 +82,9 @@ export default function ContatoPage() {
               <h2 className="text-xl font-black uppercase text-azul-marinho">
                 📍 Endereço
               </h2>
-              <p className="mt-3 text-base text-cinza-escuro">{SITE.address}</p>
+              <p className="mt-3 text-base text-cinza-escuro">{site.address}</p>
               <a
-                href={SITE.googleMapsUrl}
+                href={site.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-block text-sm font-bold uppercase tracking-wide text-azul-marinho underline-offset-4 hover:text-dourado-escuro hover:underline"
@@ -96,12 +98,12 @@ export default function ContatoPage() {
               </h2>
               <p className="mt-3 text-base text-cinza-escuro">
                 <strong className="block uppercase tracking-wide">
-                  {SITE.horario}
+                  {site.horario}
                 </strong>
-                {SITE.horarioDetalhe}
+                {site.horarioDetalhe}
               </p>
               <a
-                href={SITE.instagram}
+                href={site.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-block text-sm font-bold uppercase tracking-wide text-azul-marinho underline-offset-4 hover:text-dourado-escuro hover:underline"
@@ -114,7 +116,7 @@ export default function ContatoPage() {
           {/* Google Maps Embed */}
           <div className="mt-10 overflow-hidden rounded-2xl border border-cinza-claro shadow-md">
             <iframe
-              src={`https://www.google.com/maps?q=${SITE.googleEmbedQuery}&output=embed`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(site.name + " " + site.address)}&output=embed`}
               width="100%"
               height="400"
               style={{ border: 0 }}
