@@ -2,12 +2,14 @@ backend:
   name: github
   repo: faccod/vela-capixaba
   branch: main
-  # OAuth app do GitHub precisa ser configurado (instruções no README)
+  # Netlify Identity funciona como proxy OAuth pro GitHub
+  # Documentacao: https://decapcms.org/docs/external-oauth-clients/
   base_url: https://api.netlify.com
   auth_endpoint: auth
 
 publish_mode: editorial_workflow
-# Habilita drafts e revisão antes de publicar
+# Habilita drafts e revisao antes de publicar (cliente pode salvar rascunho sem ir pro ar)
+
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
@@ -18,10 +20,15 @@ search: true
 
 locale: pt-BR
 
+# Cor customizada no painel
+branding:
+  name: "Vela Capixaba - Admin"
+  logo_url: /images/logo-branca.png
+
 collections:
-  # ===== Configurações globais (nome, contato, endereço) =====
+  # ===== Configurações globais (WhatsApp, endereço, redes sociais) =====
   - name: "settings"
-    label: "Configurações do site"
+    label: "⚙️ Configurações do site"
     label_singular: "Configuração"
     folder: "content/settings"
     create: false
@@ -31,80 +38,50 @@ collections:
     fields:
       - { label: "Nome do site", name: "siteName", widget: "string" }
       - { label: "Slogan", name: "tagline", widget: "string" }
-      - { label: "WhatsApp (apenas números, com 55 e DDD)", name: "whatsapp", widget: "string", hint: "Ex: 5527995392923" }
-      - { label: "WhatsApp (formatado)", name: "whatsappDisplay", widget: "string", hint: "Ex: (27) 99953-9293" }
-      - { label: "E-mail", name: "email", widget: "string" }
-      - { label: "Instagram (URL)", name: "instagram", widget: "string" }
-      - { label: "Instagram (handle)", name: "instagramHandle", widget: "string" }
+      - { label: "WhatsApp (55 + DDD + número, sem espaços)", name: "whatsapp", widget: "string", hint: "Ex: 5527999539293", default: "5527999539293" }
+      - { label: "WhatsApp (formatado p/ humanos)", name: "whatsappDisplay", widget: "string", default: "(27) 99953-9293" }
+      - { label: "E-mail", name: "email", widget: "string", default: "marloniatismo@gmail.com" }
+      - { label: "Instagram (URL completa)", name: "instagram", widget: "string", default: "https://instagram.com/velacapixaba" }
+      - { label: "Instagram (handle)", name: "instagramHandle", widget: "string", default: "@velacapixaba" }
       - { label: "Endereço completo", name: "address", widget: "text" }
       - { label: "CNPJ", name: "cnpj", widget: "string" }
       - { label: "Razão social", name: "razaoSocial", widget: "string" }
-      - { label: "Horário", name: "horario", widget: "string", hint: "Ex: Segunda a Domingo" }
+      - { label: "Horário", name: "horario", widget: "string", default: "Segunda a Domingo, a partir das 08:00" }
       - { label: "Detalhe do horário", name: "horarioDetalhe", widget: "string" }
+      - { label: "Categoria (Google)", name: "categoria", widget: "string" }
+      - { label: "Nota Google", name: "googleNota", widget: "string", default: "5.0" }
+      - { label: "URL do Google Maps", name: "googleMapsUrl", widget: "string" }
 
-  # ===== Serviços / Cursos =====
-  - name: "cursos"
-    label: "Cursos e Serviços"
-    label_singular: "Curso/Serviço"
-    folder: "content/cursos"
-    slug: "{{slug}}"
-    create: true
-    delete: true
-    summary: "{{name}} — {{duracao}}"
+  # ===== Textos da Home =====
+  - name: "home"
+    label: "🏠 Página Inicial"
+    label_singular: "Página Inicial"
+    folder: "content/home"
+    create: false
+    delete: false
+    editor:
+      preview: false
     fields:
-      - { label: "Nome", name: "name", widget: "string" }
-      - { label: "Slug (URL)", name: "slug", widget: "string", hint: "Ex: iniciante, avancado, regatas, passeios" }
-      - { label: "Headline (linha fina)", name: "headline", widget: "string" }
-      - { label: "Descrição curta", name: "short", widget: "text" }
-      - { label: "É carro-chefe?", name: "destaque", widget: "boolean", default: false }
-      - { label: "Duração", name: "duracao", widget: "string", hint: "Ex: 5 aulas de 2h" }
-      - { label: "Embarcação", name: "embarcacao", widget: "string" }
-      - label: "Headline principal"
-        name: "headlinePrincipal"
-        widget: "string"
-        required: false
-      - label: "Subheadline"
-        name: "subheadline"
-        widget: "text"
-        required: false
-      - label: "Descrição completa"
-        name: "descricao"
-        widget: "text"
-        required: false
-      - label: "Estrutura (bullets)"
-        name: "estrutura"
-        widget: "list"
-        required: false
-      - label: "Incluso (bullets)"
-        name: "incluso"
-        widget: "list"
-        required: false
-      - label: "Bônus (bullets)"
-        name: "bonus"
-        widget: "list"
-        required: false
-      - label: "O que você aprende (bullets)"
-        name: "aprendizado"
-        widget: "list"
-        required: false
-      - label: "Resultado final"
-        name: "resultado"
-        widget: "text"
-        required: false
-      - label: "Tabela de preços"
-        name: "precos"
-        widget: "list"
-        required: false
-        fields:
-          - { label: "Modalidade", name: "modalidade", widget: "string" }
-          - { label: "Preço", name: "preco", widget: "string" }
-          - { label: "Detalhe extra", name: "detalhe", widget: "string", required: false }
-          - { label: "É destaque?", name: "destaque", widget: "boolean", default: false }
-          - { label: "Tag (ex: Mais vantajoso)", name: "tag", widget: "string", required: false }
+      - label: "Identificador (sempre 'hero')"
+        name: "slug"
+        widget: "hidden"
+        default: "hero"
+      - { label: "Badge 1 (World Sailing)", name: "badge1", widget: "string", default: "Certificada World Sailing" }
+      - { label: "Badge 2 (FECAI)", name: "badge2", widget: "string", default: "Filiada FECAI" }
+      - { label: "Headline principal", name: "headline", widget: "text" }
+      - { label: "Subtítulo (texto claro)", name: "subtitulo", widget: "text" }
+      - { label: "Destaque (texto em dourado)", name: "destaque", widget: "string" }
+      - { label: "CTA principal (botão)", name: "cta1", widget: "string" }
+      - { label: "CTA secundário (botão)", name: "cta2", widget: "string" }
+      - { label: "Título da seção 'Sobre'", name: "sobreTitulo", widget: "string", default: "Mais que uma escola. O seu lugar no mar." }
+      - { label: "Subtítulo da seção 'Sobre'", name: "sobreSubtitulo", widget: "text" }
+      - { label: "Texto da seção 'Sobre'", name: "sobreTexto", widget: "text" }
+      - { label: "Título da seção 'Serviços'", name: "servicosTitulo", widget: "string", default: "O que oferecemos" }
+      - { label: "Subtítulo da seção 'Serviços'", name: "servicosSubtitulo", widget: "text" }
 
-  # ===== Próximas turmas =====
+  # ===== Próximas turmas (cards na home) =====
   - name: "turmas"
-    label: "Próximas Turmas"
+    label: "📅 Próximas Turmas"
     label_singular: "Turma"
     folder: "content/turmas"
     slug: "{{slug}}"
@@ -114,15 +91,16 @@ collections:
     fields:
       - { label: "Tipo de curso", name: "tipo", widget: "string", hint: "Ex: Curso Iniciante, Curso Avançado" }
       - { label: "Data (texto livre)", name: "data", widget: "string", hint: "Ex: 15/Nov, sáb 9h-13h" }
-      - { label: "Horário", name: "horario", widget: "string" }
-      - { label: "Vagas disponíveis", name: "vagas", widget: "number" }
-      - { label: "Local", name: "local", widget: "string" }
-      - { label: "Instrutor", name: "instrutor", widget: "string" }
-      - { label: "Ativa?", name: "ativa", widget: "boolean", default: true }
+      - { label: "Horário", name: "horario", widget: "string", hint: "Ex: 9h às 13h" }
+      - { label: "Vagas disponíveis", name: "vagas", widget: "number", value_type: "int", min: 0 }
+      - { label: "Local", name: "local", widget: "string", default: "Praia da Guarderia" }
+      - { label: "Instrutor", name: "instrutor", widget: "string", default: "Marlon" }
+      - { label: "Mensagem WhatsApp (opcional)", name: "whatsappMsg", widget: "text", required: false, hint: "Mensagem personalizada pro botão de WhatsApp" }
+      - { label: "Ativa?", name: "ativa", widget: "boolean", default: true, hint: "Desmarque pra esconder do site sem deletar" }
 
-  # ===== Depoimentos =====
+  # ===== Depoimentos (carrossel na home + página de depoimentos) =====
   - name: "depoimentos"
-    label: "Depoimentos"
+    label: "⭐ Depoimentos"
     label_singular: "Depoimento"
     folder: "content/depoimentos"
     slug: "{{slug}}"
@@ -130,14 +108,21 @@ collections:
     delete: true
     summary: "{{nome}}"
     fields:
-      - { label: "Nome", name: "nome", widget: "string" }
-      - { label: "Cidade/UF", name: "cidade", widget: "string" }
-      - { label: "Texto", name: "texto", widget: "text" }
+      - { label: "Nome (ou inicial)", name: "nome", widget: "string", hint: "Ex: 'J.' ou 'João Silva'" }
+      - { label: "Cidade/UF", name: "cidade", widget: "string", default: "Vitória/ES" }
+      - { label: "Texto do depoimento", name: "texto", widget: "text" }
+      - label: "Foto (opcional)"
+        name: "foto"
+        widget: "image"
+        required: false
+        allow_multiple: false
+      - { label: "Avaliação (1-5)", name: "avaliacao", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
+      - { label: "Fonte (Google, Instagram, etc)", name: "fonte", widget: "string", default: "Google" }
       - { label: "Ativo?", name: "ativo", widget: "boolean", default: true }
 
-  # ===== FAQ =====
+  # ===== FAQ (perguntas frequentes) =====
   - name: "faq"
-    label: "FAQ — Perguntas Frequentes"
+    label: "❓ FAQ (Perguntas Frequentes)"
     label_singular: "Pergunta"
     folder: "content/faq"
     slug: "{{slug}}"
@@ -147,11 +132,33 @@ collections:
     fields:
       - { label: "Pergunta", name: "pergunta", widget: "string" }
       - { label: "Resposta", name: "resposta", widget: "text" }
-      - { label: "Ordem (1 = primeiro)", name: "ordem", widget: "number", default: 99 }
+      - { label: "Ordem (1 = primeiro)", name: "ordem", widget: "number", value_type: "int", default: 99 }
+      - { label: "Ativa?", name: "ativa", widget: "boolean", default: true }
 
-  # ===== Galeria =====
+  # ===== Equipe / Instrutores =====
+  - name: "instrutores"
+    label: "👥 Equipe / Instrutores"
+    label_singular: "Instrutor"
+    folder: "content/instrutores"
+    slug: "{{slug}}"
+    create: true
+    delete: true
+    summary: "{{nome}}"
+    fields:
+      - { label: "Nome", name: "nome", widget: "string" }
+      - { label: "Cargo / Função", name: "cargo", widget: "string", hint: "Ex: Instrutor Sênior, Velejador, Fundador" }
+      - label: "Foto"
+        name: "foto"
+        widget: "image"
+        allow_multiple: false
+      - { label: "Mini bio", name: "bio", widget: "text" }
+      - { label: "Certificações (1 por linha)", name: "certificacoes", widget: "list", required: false }
+      - { label: "Ordem de exibição", name: "ordem", widget: "number", value_type: "int", default: 99 }
+      - { label: "Ativo?", name: "ativo", widget: "boolean", default: true }
+
+  # ===== Galeria de Fotos =====
   - name: "galeria"
-    label: "Galeria de Fotos"
+    label: "📸 Galeria de Fotos"
     label_singular: "Foto"
     folder: "content/galeria"
     slug: "{{slug}}"
@@ -159,6 +166,11 @@ collections:
     delete: true
     summary: "{{titulo}}"
     fields:
-      - { label: "Título/legenda", name: "titulo", widget: "string" }
-      - { label: "Imagem", name: "imagem", widget: "image" }
-      - { label: "Ordem", name: "ordem", widget: "number", default: 99 }
+      - { label: "Título / legenda", name: "titulo", widget: "string" }
+      - label: "Imagem"
+        name: "imagem"
+        widget: "image"
+        allow_multiple: false
+      - { label: "Categoria", name: "categoria", widget: "select", options: ["aula", "passeio", "regata", "equipe", "barco", "outros"], default: "aula" }
+      - { label: "Ordem de exibição", name: "ordem", widget: "number", value_type: "int", default: 99 }
+      - { label: "Ativa?", name: "ativa", widget: "boolean", default: true }
