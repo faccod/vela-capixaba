@@ -17,7 +17,7 @@ export const SITE = {
   googleReviews: "41",
   googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Vela+Capixaba+Vit%C3%B3ria+ES",
   googleEmbedQuery: "Vela+Capixaba+Centro+N%C3%A1utico+Capixaba+Vit%C3%B3ria",
-  horario: "Segunda a Domingo, a partir das 07:00",
+  horario: "Segunda a Domingo, a partir das 08:00",
   horarioDetalhe: "Aulas agendadas conforme disponibilidade do aluno",
   categoria: "Escola de iatismo em Vitória, Espírito Santo",
 };
