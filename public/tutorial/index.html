@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial do Painel — Vela Capixaba</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #f5f7fa; }
+    .font-display { font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.01em; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .chev { transform: rotate(90deg); }
+    .chev { transition: transform 0.2s; }
+  </style>
+</head>
+<body class="text-gray-900">
+
+  <!-- HERO -->
+  <header class="bg-[#01416c] text-white">
+    <div class="max-w-3xl mx-auto px-6 pt-10 pb-8 text-center">
+      <div class="text-6xl mb-3">⛵</div>
+      <p class="font-display text-[#ffc000] text-lg tracking-widest uppercase mb-2">Painel Administrativo</p>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold mb-3 leading-tight">Como editar o site<br />sem mexer em código</h1>
+      <p class="text-base sm:text-lg opacity-90 max-w-md mx-auto">Um guia simples pra você cuidar do site da <strong>Vela Capixaba</strong> direto do celular.</p>
+      <div class="inline-block mt-6 bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm">
+        Pra: <strong>Marlon</strong> · Atualizado em 08/09/2026
+      </div>
+    </div>
+  </header>
+
+  <!-- SUMÁRIO FIXO -->
+  <nav class="bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm">
+    <div class="max-w-3xl mx-auto px-4 py-2.5 flex gap-1 overflow-x-auto text-sm">
+      <a href="#login" class="shrink-0 px-3 py-1.5 rounded-full hover:bg-gray-100 text-[#01416c] font-semibold">1. Entrar</a>
+      <a href="#tour" class="shrink-0 px-3 py-1.5 rounded-full hover:bg-gray-100 text-[#01416c] font-semibold">2. Tour</a>
+      <a href="#editar" class="shrink-0 px-3 py-1.5 rounded-full hover:bg-gray-100 text-[#01416c] font-semibold">3. Editar</a>
+      <a href="#ver" class="shrink-0 px-3 py-1.5 rounded-full hover:bg-gray-100 text-[#01416c] font-semibold">4. Conferir</a>
+      <a href="#sair" class="shrink-0 px-3 py-1.5 rounded-full hover:bg-gray-100 text-[#01416c] font-semibold">5. Sair</a>
+      <a href="#duvidas" class="shrink-0 px-3 py-1.5 rounded-full hover:bg-gray-100 text-[#01416c] font-semibold">6. Dúvidas</a>
+    </div>
+  </nav>
+
+  <main class="max-w-3xl mx-auto px-5 sm:px-6 py-8 sm:py-10 space-y-12 sm:space-y-14">
+
+    <!-- AVISO IMPORTANTE -->
+    <div class="bg-yellow-50 border-l-4 border-[#ffc000] rounded-r-lg p-5 shadow-sm">
+      <p class="font-bold text-[#01416c] mb-1">📌 Antes de tudo</p>
+      <p class="text-sm">Você só precisa de: <strong>um celular com internet</strong> e a <strong>senha</strong> que o Matheus te mandou por WhatsApp. Se perdeu a senha, peça de novo pra ele.</p>
+    </div>
+
+    <!-- ========== PASSO 1 ========== -->
+    <section id="login">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="text-[#ffc000] text-3xl sm:text-4xl font-display font-bold">01</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-[#01416c]">Como entrar</h2>
+      </div>
+      <p class="text-gray-700 mb-5">É só seguir esses 4 passos:</p>
+      <ol class="space-y-3 text-base sm:text-lg">
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">1</span>
+          <span>Abra o navegador do celular (Chrome, Safari, qualquer um).</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">2</span>
+          <span>Na barra de endereço (em cima), digite exatamente:<br />
+            <code class="inline-block mt-1 bg-[#01416c] text-white px-3 py-1.5 rounded font-mono text-sm">velacapixaba.com.br/admin</code>
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">3</span>
+          <span>Vai aparecer uma tela pedindo <strong>senha</strong>. Digite a senha que te mandaram por WhatsApp.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">4</span>
+          <span>Toque no botão amarelo <strong>Entrar</strong>. Pronto, você tá dentro! 🎉</span>
+        </li>
+      </ol>
+
+      <!-- Mock tela de login -->
+      <div class="mt-7 max-w-xs mx-auto">
+        <p class="text-center text-xs text-gray-500 mb-2 uppercase tracking-wider">Assim que vai aparecer:</p>
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden border">
+          <div class="bg-[#01416c] text-white p-4 text-center">
+            <div class="font-display font-bold tracking-wider">VELA CAPIXABA</div>
+            <div class="text-xs opacity-70">ADMIN</div>
+          </div>
+          <div class="p-6 space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-500 mb-1">SENHA</label>
+              <div class="border-2 border-gray-200 rounded-lg p-2.5 text-center tracking-widest text-gray-400 font-mono">••••••••••••••••</div>
+            </div>
+            <button class="w-full bg-[#ffc000] text-[#01416c] font-bold py-3 rounded-lg shadow">Entrar</button>
+            <p class="text-xs text-center text-gray-400">⛵ Sua escola no mar</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PASSO 2 ========== -->
+    <section id="tour">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="text-[#ffc000] text-3xl sm:text-4xl font-display font-bold">02</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-[#01416c]">As 7 abas do painel</h2>
+      </div>
+      <p class="text-gray-700 mb-6">Quando você entra, aparece uma tela com <strong>7 abas no topo</strong>. Cada aba edita uma parte do site. Olha o que dá pra mudar em cada uma:</p>
+
+      <div class="grid sm:grid-cols-2 gap-3">
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-[#ffc000]">
+          <div class="font-bold text-[#01416c] text-lg mb-1">⚙️ Config</div>
+          <p class="text-sm text-gray-600">WhatsApp, e-mail, endereço, horário de atendimento, Instagram. <em>(as informações de contato que aparecem em todo lugar do site)</em></p>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-[#ffc000]">
+          <div class="font-bold text-[#01416c] text-lg mb-1">🏠 Home</div>
+          <p class="text-sm text-gray-600">Textos da página inicial: o título grande, a frase de impacto, a chamada pra ação.</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-[#ffc000]">
+          <div class="font-bold text-[#01416c] text-lg mb-1">📅 Turmas</div>
+          <p class="text-sm text-gray-600">As próximas turmas: data de início, vagas disponíveis, qual instrutor vai dar.</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-[#ffc000]">
+          <div class="font-bold text-[#01416c] text-lg mb-1">⭐ Depoimentos</div>
+          <p class="text-sm text-gray-600">O que os alunos estão dizendo (avaliações do Google, frases de ex-alunos, etc).</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-[#ffc000]">
+          <div class="font-bold text-[#01416c] text-lg mb-1">❓ FAQ</div>
+          <p class="text-sm text-gray-600">Perguntas frequentes: idade mínima, o que levar, valor, forma de pagamento.</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-[#ffc000]">
+          <div class="font-bold text-[#01416c] text-lg mb-1">👥 Equipe</div>
+          <p class="text-sm text-gray-600">Os instrutores: nome completo, uma bio curta, e a foto de cada um.</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-[#ffc000] sm:col-span-2">
+          <div class="font-bold text-[#01416c] text-lg mb-1">📸 Galeria</div>
+          <p class="text-sm text-gray-600">As fotos da escola, das aulas, dos eventos. Aparecem no carrossel da página Galeria.</p>
+        </div>
+      </div>
+
+      <!-- Mock das abas -->
+      <div class="mt-7">
+        <p class="text-center text-xs text-gray-500 mb-2 uppercase tracking-wider">As 7 abas no topo da tela:</p>
+        <div class="bg-white rounded-xl shadow-md p-3 flex gap-2 overflow-x-auto">
+          <span class="shrink-0 bg-[#ffc000] text-[#01416c] px-3 py-1.5 rounded-md font-bold text-sm">⚙️ Config</span>
+          <span class="shrink-0 bg-gray-100 text-gray-700 px-3 py-1.5 rounded-md text-sm">🏠 Home</span>
+          <span class="shrink-0 bg-gray-100 text-gray-700 px-3 py-1.5 rounded-md text-sm">📅 Turmas</span>
+          <span class="shrink-0 bg-gray-100 text-gray-700 px-3 py-1.5 rounded-md text-sm">⭐ Depoimentos</span>
+          <span class="shrink-0 bg-gray-100 text-gray-700 px-3 py-1.5 rounded-md text-sm">❓ FAQ</span>
+          <span class="shrink-0 bg-gray-100 text-gray-700 px-3 py-1.5 rounded-md text-sm">👥 Equipe</span>
+          <span class="shrink-0 bg-gray-100 text-gray-700 px-3 py-1.5 rounded-md text-sm">📸 Galeria</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PASSO 3 ========== -->
+    <section id="editar">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="text-[#ffc000] text-3xl sm:text-4xl font-display font-bold">03</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-[#01416c]">Como editar (passo a passo)</h2>
+      </div>
+      <p class="text-gray-700 mb-5">Vou usar um exemplo real: <strong>mudar o horário de atendimento</strong> de "08:00" pra "07:00".</p>
+
+      <ol class="space-y-3 text-base sm:text-lg">
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">1</span>
+          <span>Toque na aba <strong>⚙️ Config</strong> (ela já vem aberta por padrão).</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">2</span>
+          <span>Role a tela pra baixo até achar o campo <strong>Horário</strong>.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">3</span>
+          <span><strong>Toque dentro do campo</strong>, apague o texto antigo, e escreva o novo.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">4</span>
+          <span>Role até o final e toque no <strong>botão amarelo grande 💾 Salvar</strong>.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">5</span>
+          <span>Pronto! Em até <strong>30 segundos</strong> a mudança aparece no site.</span>
+        </li>
+      </ol>
+
+      <!-- Mock do campo + botão -->
+      <div class="mt-7 max-w-md mx-auto bg-white rounded-xl shadow-md p-5 border">
+        <label class="block text-sm font-bold text-[#01416c] mb-1.5">Horário</label>
+        <div class="border-2 border-[#ffc000] rounded-lg p-2.5 text-base text-gray-800">Segunda a Domingo, a partir das 07:00</div>
+        <p class="text-xs text-gray-400 mt-2">↑ É só tocar aqui dentro e digitar</p>
+        <button class="w-full mt-5 bg-[#ffc000] text-[#01416c] font-bold py-3.5 rounded-lg shadow text-lg">💾 Salvar</button>
+      </div>
+
+      <div class="mt-6 bg-blue-50 border-l-4 border-[#01416c] rounded-r-lg p-4">
+        <p class="text-sm"><strong>💡 Dica importante:</strong> O site <strong>não atualiza sozinho</strong> na tela que você tá olhando. Você precisa abrir o site em outra aba (ou atualizar a página — puxar pra baixo no celular) pra ver a mudança.</p>
+      </div>
+    </section>
+
+    <!-- ========== PASSO 4 ========== -->
+    <section id="ver">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="text-[#ffc000] text-3xl sm:text-4xl font-display font-bold">04</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-[#01416c]">Como confirmar que deu certo</h2>
+      </div>
+
+      <ol class="space-y-3 text-base sm:text-lg">
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">1</span>
+          <span>Abra <strong>outra aba</strong> no navegador (no celular, é o quadradinho com o número).</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">2</span>
+          <span>Acesse: <code class="bg-[#01416c] text-white px-2 py-0.5 rounded font-mono text-sm">velacapixaba.com.br</code></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">3</span>
+          <span>Procure a informação que você mudou (ex: horário).</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">4</span>
+          <span>Se apareceu a mudança nova: <strong>deu certo!</strong> 🎉</span>
+        </li>
+      </ol>
+
+      <div class="mt-6 bg-yellow-50 border-l-4 border-[#ffc000] rounded-r-lg p-4">
+        <p class="text-sm"><strong>⏱️ Demorou e não apareceu?</strong> Pode ser cache. No celular, <strong>puxe a página pra baixo</strong> (de cima pra baixo, com o dedo) — isso força atualizar. No PC, aperte <code class="bg-gray-200 px-1.5 py-0.5 rounded text-xs">F5</code>.</p>
+      </div>
+    </section>
+
+    <!-- ========== PASSO 5 ========== -->
+    <section id="sair">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="text-[#ffc000] text-3xl sm:text-4xl font-display font-bold">05</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-[#01416c]">Como sair do painel</h2>
+      </div>
+
+      <ol class="space-y-3 text-base sm:text-lg">
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">1</span>
+          <span>Toque no botão <strong>Sair</strong> (canto superior direito da tela, com ícone de porta).</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-[#ffc000] text-[#01416c] font-bold flex items-center justify-center">2</span>
+          <span>Pronto, você saiu com segurança. ✅</span>
+        </li>
+      </ol>
+
+      <div class="mt-6 bg-blue-50 border-l-4 border-[#01416c] rounded-r-lg p-4">
+        <p class="text-sm"><strong>🔒 Sobre a segurança:</strong> O painel te mantém logado por 30 dias, mesmo se você fechar o navegador. Mas é uma boa prática <strong>sair quando terminar</strong>, especialmente se for usar o celular de outra pessoa. E não compartilhe a senha com ninguém — ela é pessoal e intransferível.</p>
+      </div>
+    </section>
+
+    <!-- ========== PASSO 6 ========== -->
+    <section id="duvidas">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="text-[#ffc000] text-3xl sm:text-4xl font-display font-bold">06</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-[#01416c]">Problemas comuns</h2>
+      </div>
+      <p class="text-gray-700 mb-5">Tocou no problema pra ver a solução:</p>
+
+      <details class="bg-white rounded-xl shadow-sm mb-3 group">
+        <summary class="p-4 cursor-pointer font-semibold flex justify-between items-center">
+          <span>❌ "Senha inválida"</span>
+          <span class="chev text-[#ffc000]">▶</span>
+        </summary>
+        <div class="px-4 pb-4 text-gray-700 text-sm space-y-2">
+          <p>A senha tem <strong>16 caracteres</strong> misturando letras e números, tudo minúsculo. Confira se digitou certo, sem espaço no começo ou no final.</p>
+          <p>Se esqueceu ou perdeu, peça pro Matheus (WhatsApp no final da página).</p>
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl shadow-sm mb-3 group">
+        <summary class="p-4 cursor-pointer font-semibold flex justify-between items-center">
+          <span>⏱️ "Salvei mas o site não mudou"</span>
+          <span class="chev text-[#ffc000]">▶</span>
+        </summary>
+        <div class="px-4 pb-4 text-gray-700 text-sm space-y-2">
+          <p>1. Espere uns <strong>30 segundos</strong> e atualize a página do site (puxar pra baixo no celular).</p>
+          <p>2. Se não funcionar, faça <strong>logout</strong> e <strong>login de novo</strong> no painel.</p>
+          <p>3. Se ainda assim não funcionar, me chama no WhatsApp com um print do que tá acontecendo.</p>
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl shadow-sm mb-3 group">
+        <summary class="p-4 cursor-pointer font-semibold flex justify-between items-center">
+          <span>🖼️ "Quero trocar uma foto (instrutor ou galeria)"</span>
+          <span class="chev text-[#ffc000]">▶</span>
+        </summary>
+        <div class="px-4 pb-4 text-gray-700 text-sm space-y-2">
+          <p>As fotos ficam guardadas em links (URLs), não dá pra subir direto pelo painel. Mas é fácil:</p>
+          <ol class="list-decimal list-inside space-y-1 ml-2">
+            <li>Abra o <strong>Google Fotos</strong> no celular</li>
+            <li>Escolha a foto que você quer usar</li>
+            <li>Toque em <strong>Compartilhar</strong> → <strong>Copiar link</strong></li>
+            <li>Cole esse link no campo de URL da foto, no painel</li>
+            <li>Salve</li>
+          </ol>
+          <p class="text-xs text-gray-500">💡 Se o Google Fotos der problema, pode usar Imgur ou outro serviço de imagem. É só colar o link público da foto.</p>
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl shadow-sm mb-3 group">
+        <summary class="p-4 cursor-pointer font-semibold flex justify-between items-center">
+          <span>📝 "Quero adicionar um novo depoimento / FAQ / instrutor"</span>
+          <span class="chev text-[#ffc000]">▶</span>
+        </summary>
+        <div class="px-4 pb-4 text-gray-700 text-sm space-y-2">
+          <p>Toque na aba que você quer editar e role até o final. Tem um botão <strong>+ Adicionar novo</strong>. Preenche os campos e salva.</p>
+          <p>Pra deletar um item, procure o <strong>X vermelho</strong> ou botão de lixeira do lado dele.</p>
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl shadow-sm mb-3 group">
+        <summary class="p-4 cursor-pointer font-semibold flex justify-between items-center">
+          <span>😰 "Acho que quebrei alguma coisa"</span>
+          <span class="chev text-[#ffc000]">▶</span>
+        </summary>
+        <div class="px-4 pb-4 text-gray-700 text-sm space-y-2">
+          <p>Calma, <strong>não tem como quebrar de verdade</strong>. O site sempre tem os dados antigos salvos como backup. Se aparecer algo estranho ou sumir alguma coisa, me chama no WhatsApp que a gente resolve rapidinho.</p>
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl shadow-sm mb-3 group">
+        <summary class="p-4 cursor-pointer font-semibold flex justify-between items-center">
+          <span>📱 "O site tá estranho no meu celular"</span>
+          <span class="chev text-[#ffc000]">▶</span>
+        </summary>
+        <div class="px-4 pb-4 text-gray-700 text-sm space-y-2">
+          <p>Quase sempre é <strong>cache</strong> (o celular guardou uma versão antiga). Tente:</p>
+          <ol class="list-decimal list-inside space-y-1 ml-2">
+            <li>Puxar a página pra baixo pra atualizar</li>
+            <li>Fechar a aba e abrir de novo</li>
+            <li>Se não resolver: limpar cache do navegador (Configurações do celular → Apps → Chrome → Armazenamento → Limpar cache)</li>
+          </ol>
+        </div>
+      </details>
+    </section>
+
+    <!-- ========== CONTATO ========== -->
+    <section class="bg-[#01416c] text-white rounded-2xl p-7 sm:p-8 text-center shadow-xl">
+      <div class="text-5xl mb-3">📞</div>
+      <h3 class="font-display text-2xl sm:text-3xl font-bold mb-2">Precisa de ajuda?</h3>
+      <p class="opacity-90 mb-5">Fala direto com o Matheus, que fez o site:</p>
+      <a href="https://wa.me/5527981468698?text=Oi%20Matheus!%20Preciso%20de%20ajuda%20com%20o%20painel%20da%20Vela%20Capixaba" class="inline-flex items-center gap-2 bg-[#ffc000] text-[#01416c] font-bold py-3.5 px-7 rounded-full shadow-lg hover:scale-105 transition-transform">
+        <span class="text-xl">💬</span>
+        <span>WhatsApp: (27) 98146-8698</span>
+      </a>
+      <p class="text-sm opacity-70 mt-5">Respondo rápido — e pode mandar <strong>print do problema</strong>, fica mais fácil de resolver!</p>
+    </section>
+
+    <!-- ========== RESUMO RÁPIDO ========== -->
+    <section class="bg-white rounded-2xl shadow-md p-6 sm:p-7 border-t-4 border-[#ffc000]">
+      <h3 class="font-display text-2xl font-bold text-[#01416c] mb-4">📋 Resumo rápido (cola)</h3>
+      <div class="space-y-2.5 text-sm sm:text-base">
+        <div class="flex justify-between gap-3 py-1.5 border-b border-gray-100">
+          <span class="text-gray-600">Endereço do painel:</span>
+          <code class="bg-gray-100 px-2 py-0.5 rounded text-[#01416c] font-mono text-xs">velacapixaba.com.br/admin</code>
+        </div>
+        <div class="flex justify-between gap-3 py-1.5 border-b border-gray-100">
+          <span class="text-gray-600">Endereço do site:</span>
+          <code class="bg-gray-100 px-2 py-0.5 rounded text-[#01416c] font-mono text-xs">velacapixaba.com.br</code>
+        </div>
+        <div class="flex justify-between gap-3 py-1.5 border-b border-gray-100">
+          <span class="text-gray-600">Senha:</span>
+          <span class="text-gray-800">a que te mandaram por WhatsApp (16 caracteres)</span>
+        </div>
+        <div class="flex justify-between gap-3 py-1.5 border-b border-gray-100">
+          <span class="text-gray-600">Tempo pra propagar:</span>
+          <span class="text-gray-800">até 30 segundos</span>
+        </div>
+        <div class="flex justify-between gap-3 py-1.5">
+          <span class="text-gray-600">Sair do painel:</span>
+          <span class="text-gray-800">botão Sair (canto superior direito)</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="text-center py-8 text-sm text-gray-400">
+    <p>⛵ Vela Capixaba · Painel administrativo · Tutorial v1.0</p>
+    <p class="mt-1 opacity-70">Feito com 💙 por Matheus</p>
+  </footer>
+
+</body>
+</html>
