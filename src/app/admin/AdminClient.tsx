@@ -81,6 +81,16 @@ export default function AdminClient({ initialData }: { initialData: Data }) {
           <h1 className="text-lg sm:text-xl font-black">Vela Capixaba · Admin</h1>
           <div className="flex items-center gap-2">
             <a
+              href="https://wa.me/5527981468698?text=Oi%20Matheus!%20Preciso%20de%20suporte%20com%20o%20site%20da%20Vela%20Capixaba"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm bg-[#25D366] hover:bg-[#1DA851] text-white px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5"
+              title="Suporte via WhatsApp"
+            >
+              <span>💬</span>
+              <span className="hidden sm:inline">Suporte</span>
+            </a>
+            <a
               href="/tutorial"
               target="_blank"
               rel="noopener noreferrer"
