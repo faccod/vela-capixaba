@@ -178,62 +178,82 @@ CNAME    www     cname.vercel-dns.com
 - [ ] Vídeos (MP4 ou link YouTube/IG) — prometidos pelo Matheus
 - [ ] E-mail institucional @velacapixaba.com.br (cliente vai criar)
 
-## 🔧 Decisão 07/09/2026: Desistir do Decap CMS, fazer painel admin CUSTOM
+## 🔧 Decisão 07-08/09/2026: Painel admin CUSTOM (não Decap CMS)
 
 **Por que paramos com Decap CMS + Netlify Identity:**
 - Email de signup confirmation NÃO chega no Gmail do Marlon (mas welcome chega)
-- Tentamos com `marloniatismo@gmail.com` e `marlonos1@hotmail.com` — Hotmail funcionou, mas depois deu erro "t" no login (provavelmente rate limit ou token expirado)
+- Tentamos com `marloniatismo@gmail.com` e `marlonos1@hotmail.com` — Hotmail funcionou, mas depois deu erro "t" no login
 - API admin do Netlify Identity mudou e não tem endpoint estável pra forçar confirmação
 - Gmail filtro específico em template de signup do GoTrue
 
-**Plano de ataque pra próxima sessão: Painel admin custom in-house**
+**Plano implementado: Painel admin custom in-house**
 
-Stack:
-- **Banco**: Vercel KV (free tier, 256 MB) — NoSQL simples key-value
+Stack final:
+- **Banco**: Upstash Redis (free tier, 256 MB) — key-value simples
 - **Auth**: senha mestra única (env var `ADMIN_PASSWORD`)
 - **API routes** (Next.js): GET/POST em `/api/cms/[collection]`
 - **UI**: página `/admin` no site (NÃO `/admin/index.html` do Decap)
-- **Upload de fotos**: Vercel Blob (free tier) ou salvar como base64
 
 Collections editáveis:
 - ⚙️ Settings (WhatsApp, endereço, horário, etc)
 - 🏠 Home (hero, sobre, serviços)
 - 📅 Turmas (cards)
-- ⭐ Depoimentos (com upload de foto)
+- ⭐ Depoimentos (com URL de foto)
 - ❓ FAQ
 - 👥 Equipe / Instrutores
 - 📸 Galeria
 
-**Tarefas (estimativa: 2-3h):**
-1. [ ] Setup Vercel KV (10 min)
-2. [ ] API routes GET/POST (30-40 min)
-3. [ ] Página `/admin` com formulários (1h)
-4. [ ] Migração do site pra ler do KV (com fallback `data.ts`) (20-30 min)
-5. [ ] Upload de fotos via Vercel Blob (20 min)
-6. [ ] Testes + deploy (20 min)
+**Tarefas:**
+1. [x] Limpar Decap CMS (movido pra `_archive/decap/`)
+2. [x] Recriar `lib/whatsapp.ts` + `lib/cms.ts` com Upstash Redis
+3. [x] Criar `lib/admin-auth.ts` (cookie HTTP-only HMAC)
+4. [x] API routes GET/POST (`/api/admin/login`, `/api/cms/[collection]`)
+5. [x] Página `/admin` com 7 abas e formulários
+6. [x] Bug fix: `whatsappLink` parametros invertidos (Header/WhatsAppFloat)
+7. [x] Deploy do código (aguarda env vars)
 
-**Antes de começar, Matheus precisa definir:**
-- Senha mestra do admin (ex: `vela2026` ou uma aleatória)
-- Se o Marlon também vai ter acesso ou só o Matheus
+**Pendente (depende do Matheus):**
+- [ ] Criar database Upstash Redis free em [console.upstash.com](https://console.upstash.com)
+- [ ] Copiar REST URL e TOKEN
+- [ ] Adicionar `UPSTASH_REDIS_REST_URL` e `UPSTASH_REDIS_REST_TOKEN` no Vercel → Environment Variables (Production)
+- [ ] Redeploy
+- [ ] Testar login em `velacapixaba.com.br/admin/login` com senha `agdHAvDlqqt6K4iz`
 
-**Depois de pronto:**
-- Marlon acessa `velacapixaba.com.br/admin`, digita a senha, edita à vontade
-- Site atualiza em ~5s (sem rebuild, Vercel KV é read-on-request)
+## Credenciais geradas (salvar em local seguro!)
 
-## Limpeza a fazer antes de começar
+- **URL admin**: https://velacapixaba.com.br/admin
+- **Senha mestra**: `agdHAvDlqqt6K4iz` (16 chars alfanum)
+- Arquivo detalhado: `C:\Users\Matheus\Documents\Matheus Docs\MinimaX\Vela Capixaba\ADMIN-CREDENTIALS.md`
 
-- [ ] Deletar `web/public/admin/` (config.yml + index.html do Decap)
-- [ ] Deletar `web/content/` (arquivos JSON que não vão ser usados)
-- [ ] Deletar `web/src/lib/cms.ts` e `web/src/lib/whatsapp.ts` (vão virar inúteis)
-- [ ] Deletar projeto Netlify (não vamos mais usar)
-- [ ] Confirmar se o site volta a usar 100% `data.ts` enquanto o painel custom não tá pronto
+## Mudança de stack importante: Vercel KV → Upstash Redis
 
-## Notas da sessão 07/09/2026
+- **Vercel KV foi deprecado em 2025** (aparece no Marketplace como pago $8+/mês)
+- **Substituto oficial**: Upstash Redis (free tier via console.upstash.com)
+- **Pacote npm**: `@upstash/redis` (substitui `@vercel/kv`)
+- **API**: drop-in (mesma `.get()`, `.set()`)
+- **Env vars**: `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` (em vez de `KV_*`)
 
-- Netlify Identity: 1 usuário convidado (`marlonos1@hotmail.com`), deletar na próxima sessão
-- Bug Gmail com Netlify Identity signup confirmation: ver memória do agent
-- Token GitHub OAuth `gho_HeUodk...` foi exposto em arquivos antigos — rotacionar em github.com/settings/tokens
-- Scripts com token em `_archive/` (mover pra fora do repo)
+## Como testar depois do setup
+
+1. Acessar `velacapixaba.com.br/admin/login`
+2. Senha: `agdHAvDlqqt6K4iz`
+3. Painel aparece com 7 abas (Config, Home, Turmas, Depoimentos, FAQ, Equipe, Galeria)
+4. Editar um campo qualquer → Salvar
+5. Recarregar `velacapixaba.com.br` em outra aba → mudança aparece em 5s
+6. Site continua funcionando com fallback `data.ts` se Upstash der problema
+
+## Pendência do lado do Matheus (5 min)
+
+- [ ] **Rotacionar token GitHub** em [github.com/settings/tokens](https://github.com/settings/tokens) (foi exposto em scripts antigos)
+- [ ] **Deletar pasta `_archive/`** manualmente (6 scripts com token antigo)
+- [ ] **Limpar projeto Netlify** (velacapixaba) — não vamos mais usar, deletar pra não pagar
+
+## Notas para continuar
+
+- Senha mestra: `agdHAvDlqqt6K4iz` (salva em ADMIN-CREDENTIALS.md)
+- Upstash: criar via console.upstash.com → pegar REST URL e TOKEN
+- Se Upstash der problema no futuro, fallback `data.ts` mantém o site funcionando
+- Upload de fotos ainda usa URL (não tem upload direto no painel — Marlon sobe no Google Fotos e cola o link)
 
 ## URLs e credenciais
 
